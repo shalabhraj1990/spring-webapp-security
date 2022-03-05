@@ -1,0 +1,33 @@
+package com.spring.security.service;
+
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
+
+import com.spring.security.entity.AppUser;
+import com.spring.security.repository.AppUserRepository;
+
+@Service
+public class UserDetailsServiceImpl implements UserDetailsService {
+	@Autowired
+	AppUserRepository appUserRepository;
+
+	@Override
+	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+		if (StringUtils.isEmpty(username)) {
+			new UsernameNotFoundException("user name is empty!!");
+		}
+		Optional<AppUser> appUser = appUserRepository.findByUsername(username);
+		appUser.orElseThrow(() -> new UsernameNotFoundException("user not exsist in db"));
+		AppUser user = appUser.get();
+		return User.builder().username(user.getUsername()).password(user.getPassword()).disabled(!user.getActive())
+				.roles(user.getRoles()).build();
+	}
+
+}
