@@ -1,4 +1,4 @@
-package com.spring.security.config;
+package com.spring.security.filter;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -6,7 +6,8 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.web.server.ServerHttpSecurity;
 import org.springframework.security.web.server.SecurityWebFilterChain;
 
-import com.spring.security.filter.ServerSecurityContextRepositoryImp;
+import com.spring.security.config.ReactiveAuthenticationMangerImp;
+import com.spring.security.config.ServerSecurityContextRepositoryImp;
 
 @Configuration
 public class WebFluxSecurityConfiguration {

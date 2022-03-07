@@ -1,4 +1,4 @@
-package com.spring.security.filter;
+package com.spring.security.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
@@ -11,8 +11,6 @@ import org.springframework.security.web.server.context.ServerSecurityContextRepo
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 import org.springframework.web.server.ServerWebExchange;
-
-import com.spring.security.config.ReactiveAuthenticationMangerImp;
 
 import reactor.core.publisher.Mono;
 
