@@ -8,7 +8,7 @@ import reactor.core.publisher.Mono;
 @RestController
 public class HelloReactiveController {
 
-	@GetMapping("hi")
+	@GetMapping("/reactive/hi")
 	public Mono<String> sayHello() {
 		return Mono.just("Spring Security with JWT-TOKEN (Reactive-application)");
 	}

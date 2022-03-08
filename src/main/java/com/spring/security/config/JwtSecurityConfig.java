@@ -32,7 +32,9 @@ public class JwtSecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 		http.csrf().disable();
 
-		http.authorizeRequests().antMatchers("servlet/create-token").permitAll().anyRequest().authenticated().and()
+		http.authorizeRequests().antMatchers("/servlet/create-token").permitAll()
+		.antMatchers("/reactive/create-token").permitAll()
+		.anyRequest().authenticated().and()
 				.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 		http.addFilterBefore(jwtValidateFilter, UsernamePasswordAuthenticationFilter.class);
 	}

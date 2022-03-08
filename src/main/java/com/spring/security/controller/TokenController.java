@@ -29,7 +29,7 @@ public class TokenController {
 	@Autowired
 	private BCryptPasswordEncoder passerdEncoder;
 
-	@PostMapping("servlet/create-token")
+	@PostMapping("/servlet/create-token")
 	public String createJwtToken(@RequestBody CreateJwtRequest request) {
 		UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(request.getUsername(),
 				request.getPassword());
@@ -37,7 +37,7 @@ public class TokenController {
 		return jwtService.createToken(request.getUsername());
 	}
 
-	@PostMapping("reactive/create-token")
+	@PostMapping("/reactive/create-token")
 	public Mono<String> createReativeJwtToken(@RequestBody CreateJwtRequest request) {
 
 		Mono<UserDetails> monUser = reactiveUserDetailsServiceImpl.loadUserByUsername(request.getUsername());
